@@ -67,6 +67,15 @@ function BeneficiaryForm() {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
+
+            if (!token) {
+                setError('Você precisa estar autenticado. Faça login novamente.');
+                setTimeout(() => {
+                    navigate('/login');
+                }, 2000);
+                return;
+            }
+
             const config = {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -80,8 +89,8 @@ function BeneficiaryForm() {
             }
             navigate('/beneficiaries');
         } catch (error) {
-            setError('Erro ao salvar beneficiário');
-            console.error('Erro:', error);
+            console.error('Erro detalhado:', error);
+            setError(`Erro ao salvar beneficiário: ${error.message}`);
         }
     };
 
