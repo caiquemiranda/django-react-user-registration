@@ -31,7 +31,7 @@ Sistema web para cadastro e gerenciamento de beneficiários de programas sociais
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/sistema-cadastro-social.git
+git clone https://github.com/caiquemiranda/sistema-cadastro-social.git
 cd sistema-cadastro-social/backend
 ```
 
