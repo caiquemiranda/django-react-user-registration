@@ -46,9 +46,14 @@ function Register() {
             password: formData.password,
         };
 
-        const success = await register(userData);
-        if (success) {
-            navigate('/login');
+        try {
+            const success = await register(userData);
+            if (success) {
+                navigate('/login');
+            }
+        } catch (error) {
+            console.error('Erro ao registrar:', error);
+            setError(error.response?.data?.message || 'Erro ao registrar usuário');
         }
     };
 
@@ -80,7 +85,7 @@ function Register() {
                             {error}
                         </Alert>
                     )}
-                    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, width: '100%' }}>
                         <TextField
                             margin="normal"
                             required
