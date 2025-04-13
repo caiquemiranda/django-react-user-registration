@@ -34,6 +34,9 @@ class BeneficiaryViewSet(viewsets.ModelViewSet):
         if self.request.user.is_admin:
             return Beneficiary.objects.all()
         return Beneficiary.objects.filter(user=self.request.user)
+    
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
     @action(detail=True, methods=['get'])
     def generate_pdf(self, request, pk=None):

@@ -66,10 +66,17 @@ function BeneficiaryForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            const token = localStorage.getItem('token');
+            const config = {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            };
+
             if (id) {
-                await axios.put(`http://localhost:8000/api/beneficiaries/${id}/`, formData);
+                await axios.put(`http://localhost:8000/api/beneficiaries/${id}/`, formData, config);
             } else {
-                await axios.post('http://localhost:8000/api/beneficiaries/', formData);
+                await axios.post('http://localhost:8000/api/beneficiaries/', formData, config);
             }
             navigate('/beneficiaries');
         } catch (error) {
